@@ -4,7 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using BamboAuto.Data;
 using BamboAuto.Models;
+using BamboAuto.Utility;
 using BamboAuto.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,6 +21,7 @@ namespace BamboAuto.Controllers
             _db = db;
         }
 
+        [Authorize]
         public IActionResult Index(int carId)
         {
             var car = _db.Cars.FirstOrDefault(c => c.Id == carId);
@@ -37,6 +40,7 @@ namespace BamboAuto.Controllers
             return View(model);
         }
 
+        [Authorize(Roles = SD.AdminEndUser)]
         //GET: Services/Create
         public IActionResult Create(int carId)
         {
@@ -55,7 +59,7 @@ namespace BamboAuto.Controllers
             };
             return View(model);
         }
-
+        [Authorize(Roles = SD.AdminEndUser)]
         //POST: Services/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -84,7 +88,7 @@ namespace BamboAuto.Controllers
             };
             return View(newModel);
         }
-
+        [Authorize(Roles = SD.AdminEndUser)]
         //DELETE GET
         public async Task<IActionResult> Delete(int? id)
         {
@@ -101,7 +105,7 @@ namespace BamboAuto.Controllers
 
             return View(service);
         }
-
+        [Authorize(Roles = SD.AdminEndUser)]
         //DELETE POST
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

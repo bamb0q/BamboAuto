@@ -4,11 +4,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using BamboAuto.Data;
 using BamboAuto.Models;
+using BamboAuto.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace BamboAuto.Controllers
 {
+    [Authorize(Roles = SD.AdminEndUser)]
     public class ServiceTypesController : Controller
     {
         private readonly ApplicationDbContext _db;

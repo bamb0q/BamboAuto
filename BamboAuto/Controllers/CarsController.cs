@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 using BamboAuto.Data;
 using BamboAuto.Models;
 using BamboAuto.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace BamboAuto.Controllers
 {
+    [Authorize]
     public class CarsController : Controller
     {
         private readonly ApplicationDbContext _db;
