@@ -13,6 +13,7 @@
       "launchBrowser": true,
       "launchUrl": "https://localhost:44370/",
       "environmentVariables": {
+        "ASPNETCORE_HTTPS_PORT ": "44370",
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },

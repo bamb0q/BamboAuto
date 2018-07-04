@@ -43,18 +43,18 @@ namespace BamboAuto
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
-            {
-                app.UseBrowserLink();
+            { 
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
             }
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-            }
+				app.UseHsts();
+			}
 
-            app.UseStaticFiles();
-
+			app.UseHttpsRedirection();
+			app.UseStaticFiles();
             app.UseAuthentication();
 
             app.UseMvc(routes =>
